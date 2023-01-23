@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ApplicationQuitOrPause : MonoBehaviour
 {
-    protected virtual void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
     }
