@@ -1,20 +1,35 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ApplicationQuitOrPause : MonoBehaviour
 {
-    private static List<Action> quitActions = new List<Action>();
+    protected virtual void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private static Action quitActions;
     public static void Add(Action action)
     {
-        quitActions.Add(action);
+        quitActions += action;
+    }
+    public static void Remove(Action action)
+    {
+        quitActions -= action;
+    }
+    public static void RemoveAll()
+    {
+        foreach (Action quitAction in quitActions.GetInvocationList())
+        {
+            quitActions -= quitAction;
+        }
     }
 
     private static void InvokeQuitActions()
     {
-        foreach (var item in quitActions)
+        if (quitActions != null)
         {
-            item.Invoke();
+            quitActions.Invoke();
         }
     }
 
