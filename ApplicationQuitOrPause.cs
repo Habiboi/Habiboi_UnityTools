@@ -3,8 +3,17 @@ using UnityEngine;
 
 public class ApplicationQuitOrPause : MonoBehaviour
 {
+    private static ApplicationQuitOrPause instance;
     private void Awake()
     {
+        if(instance==null)
+        {
+            instance=this;
+        }
+        else if(instance!=this)
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
     }
 
