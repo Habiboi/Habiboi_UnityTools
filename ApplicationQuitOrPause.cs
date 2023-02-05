@@ -6,11 +6,11 @@ public class ApplicationQuitOrPause : MonoBehaviour
     private static ApplicationQuitOrPause instance;
     private void Awake()
     {
-        if(instance==null)
+        if (instance == null)
         {
-            instance=this;
+            instance = this;
         }
-        else if(instance!=this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
